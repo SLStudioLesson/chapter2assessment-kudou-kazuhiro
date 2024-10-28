@@ -1,10 +1,13 @@
 package data;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class RecipeFileHandler {
     private String filePath;
+    private ArrayList<String> recipes = new ArrayList<>();
 
     public RecipeFileHandler() {
         filePath = "app/src/main/resources/recipes.txt";
@@ -22,12 +25,17 @@ public class RecipeFileHandler {
      * @return レシピデータ
      */
     public ArrayList<String> readRecipes() {
-        // try {
-
-        // } catch (IOException e) {
-        //     System.out.println("Error reading file:" + e.getMessage());
-        // }
-        return null;
+        // ファイルの読み取り
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+            // 読み取った内容をリストに格納
+            String line;
+            while((line = reader.readLine()) != null) {
+                recipes.add(line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading file:" + e.getMessage());
+        }
+        return recipes;
     }
 
     /**
