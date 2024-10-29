@@ -66,7 +66,10 @@ public class RecipeUI {
     private void displayRecipes() {
         // レシピデータの読み込み
         ArrayList<String> recipes = fileHandler.readRecipes();
-        if(recipes.equals("")) {
+        if(recipes.isEmpty()) {
+            System.out.println();
+            System.out.println("No recipes available.");
+        } else {
             System.out.println();
             System.out.println("Recipes:");
             // 読み込んだデータの出力
@@ -80,8 +83,6 @@ public class RecipeUI {
                 }
                 System.out.println(strings[strings.length - 1]);
             }
-        } else {
-            System.out.println("No recipes available.");
         }
     }
 
